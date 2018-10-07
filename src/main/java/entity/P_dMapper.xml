@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace映射文件的namespace必须等于Mapper映射器的全限定名 -->
+<mapper namespace="dao.P_dDao">
+	
+	
+	<insert id="addP_d" parameterType="entity.P_d" >
+		insert into p_d values(#{p_no},#{d_no}) 
+	</insert>
+	
+	<delete id="deleteByD_no" parameterType="String">
+		delete from p_d where d_no=#{d_no}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+

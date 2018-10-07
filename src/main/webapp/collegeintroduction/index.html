@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="/adminServer/css/bootstrap.min.css" />
+		<script type="text/javascript" src="/adminServer/js/jquery-3.2.1.js" ></script>
+		<script type="text/javascript" src="/adminServer/js/popper.min.js" ></script>
+		<script type="text/javascript" src="/adminServer/js/bootstrap.js" ></script>
+		<style>
+			
+			#left{
+					width: 10%;
+					
+					position: fixed;
+					left: 20px;
+					
+			}
+			
+			#content{
+				width: 80%;
+				/*position: absolute;
+				right: 20px;*/
+				float: right;
+				margin-right: 20px;
+				height: 800px;
+				
+			}
+			img{
+				width: 800px;
+				height: 400px;
+			}
+		</style>
+		
+		<script>
+			
+			function openSrc(n){
+				var iframe_content = $("#content")[0];
+				if(n==0){
+					iframe_content.src="attention.html";
+				}else if(n==1){
+					iframe_content.src="addSubjectDemo.html";
+				}else if( n== 2){
+					iframe_content.src="addResource.html";
+				}
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="left">
+			<div class="list-group">
+			    <a onclick="openSrc(0)" class="list-group-item list-group-item-action">默认</a>
+			    <a onclick="openSrc(1)" class="list-group-item list-group-item-action">添加学科方向</a>
+			    <a onclick="openSrc(2)" class="list-group-item list-group-item-action">添加资源</a>
+		    </div>
+		</div>
+		
+		
+		<iframe id="content" src="attention.html" frameborder="0" >
+			
+		
+		</iframe>
+	</body>
+</html>

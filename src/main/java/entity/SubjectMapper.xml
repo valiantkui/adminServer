@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace映射文件的namespace必须等于Mapper映射器的全限定名 -->
+<mapper namespace="dao.SubjectDao">
+	
+	<select id="findSubjectByP_no" parameterType="String" resultType="entity.Subject">
+		select subject.s_no,name,type,intro,image_address from subject,p_s 
+		where subject.s_no = p_s.s_no 
+		and p_no = #{p_no}
+	</select>	
+	<select id="findSubjectByD_no" parameterType="String" resultType="entity.Subject">
+		select subject.s_no,name,type,intro,image_address from subject,d_s 
+		where subject.s_no = d_s.s_no 
+		and d_no = #{d_no}
+	</select>	
+	
+	
+	<select id="findAllSubject" resultType="entity.Subject" >
+		select * from subject
+	</select>
+	<select id="findSubjectByS_no" resultType="entity.Subject" parameterType="String" >
+		select * from subject where s_no = #{s_no}
+	</select>
+	<insert id="addSubject" parameterType="entity.Subject" >
+		insert into subject values(#{s_no},#{name},#{type},#{intro},#{image_address}) 
+	</insert>
+	
+	<select id="findPreSubjectByS_no" resultType="entity.Subject" parameterType="String" >
+		select subject.s_no,subject.name,subject.type,subject.intro,subject.image_address from subject , s_s
+		where subject.s_no = s_s.pre_subject
+		 and s_s.next_subject = #{s_no}
+	</select>
+	
+	<update id="updateSubjectNotImage" parameterType="entity.Subject">
+		update subject set name = #{name},type = #{type},intro = #{intro} where s_no = #{s_no}
+	</update>
+	<update id="updateSubject" parameterType="entity.Subject">
+		update subject set name = #{name},type = #{type},intro = #{intro},image_address=#{image_address}
+		 where s_no = #{s_no}	
+	</update>
+	
+	<delete id="deleteSubjectByS_no" parameterType="String">
+		delete from subject where s_no = #{s_no}
+	</delete>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+

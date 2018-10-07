@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace映射文件的namespace必须等于Mapper映射器的全限定名 -->
+<mapper namespace="dao.DirectionDao">
+	
+	<select id="findAllMasterDirection" resultType="entity.Direction">
+		select * from direction where type='考研'
+	
+	</select>
+	<select id="findAllJobDirection" resultType="entity.Direction">
+		select * from direction where type='就业'
+	
+	</select>
+	
+	
+	
+	
+	<select id="findMasterDirectionByP_no" resultType="entity.Direction" parameterType="String">
+		select d.d_no,d.name,d.type,d.intro_link,d.vista_link,d.update_date from direction d,p_d
+		 where d.d_no = p_d.d_no
+		  and type = '考研'
+		  and p_d.p_no = #{p_no}
+	</select>
+	<select id="findJobDirectionByP_no" resultType="entity.Direction" parameterType="String">
+		select d.d_no,d.name,d.type,d.intro_link,d.vista_link,d.update_date from direction d,p_d
+		 where d.d_no = p_d.d_no
+		  and type = '就业'
+		  and p_d.p_no = #{p_no}
+	</select>
+	
+	<select id="findMasterDirectionByD_no" resultType="entity.Direction" parameterType="String">
+		select * from direction 
+		 where d_no = #{d_no}
+		  and type = '考研'
+	</select>
+	<select id="findJobDirectionByD_no" resultType="entity.Direction" parameterType="String">
+		select * from direction 
+		 where d_no = #{d_no}
+		 and type = '就业'
+	</select>
+	
+	<insert id="addDirection" parameterType="entity.Direction">	
+		insert into direction values(#{d_no},#{name},#{type},#{intro_link},#{vista_link},#{update_date})
+	</insert>
+	
+	<update id="updateDirection" parameterType="entity.Direction">
+		update direction set d_no=#{d_no},name=#{name},type=#{type}
+		,intro_link=#{intro_link}
+		,vista_link=#{vista_link} 
+		,update_date=#{update_date}
+		 where d_no = #{d_no}
+	</update>
+	<delete id="deleteByD_no" parameterType="String">
+		delete from direction where d_no = #{d_no}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+

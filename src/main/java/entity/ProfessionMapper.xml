@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- namespace映射文件的namespace必须等于Mapper映射器的全限定名 -->
+<mapper namespace="dao.ProfessionDao">
+	
+	<select id="findAll" resultType="entity.Profession">
+		select * from profession
+	</select>	
+	
+	<select id="findProfessionByS_no" parameterType="String" resultType="entity.Profession">
+		select profession.p_no,profession.name from profession,p_s 
+		where profession.p_no = p_s.p_no
+		 and p_s.s_no = #{s_no}
+	</select>
+	
+	<select id="findProfessionByD_no" parameterType="String" resultType="entity.Profession">
+		select profession.p_no,profession.name from profession,p_d 
+		where profession.p_no = p_d.p_no
+		 and p_d.d_no = #{d_no}
+	</select>
+	
+	<delete id="deleteProfessionByS_no" parameterType="String">
+		delete from profession where s_no = #{s_no}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
